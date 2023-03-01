@@ -3,6 +3,7 @@ import os.path
 
 f_name = "notes.json"
 
+#json-строка пустой БД. для случая когда изначально БД нет, либо файл БД утерян
 empty_json_str = """
 {
     "note": []
@@ -14,13 +15,13 @@ def json_load_from_file():
 
     #если json-файл отсутствует, то предлагает создать пустой, по шаблону
     if not os.path.exists(f_name):
-        # предлагаем создать новую пустаую БД. Файл json
+        # предлагаем создать новую пустую БД json-файл
         ch = input(f'Файл БД {f_name} отсуствует. Создать новый json-файл - ? y/n')
         if ch.upper() == "Y":
             try:
-                #считываем строку в словарь словарей
+                #считываем json-строку в словарь словарей data
                 data = json.loads(empty_json_str)
-                #далее пишем словарь словарей в json-файл. По сути создаем заново БД
+                #далее пишем словарь словарей в json-файл на диск. По сути создаем заново БД
                 with open(f_name, "w") as write_file:
                     json.dump(data, write_file, indent=2)
             except Exception as e:
@@ -32,7 +33,6 @@ def json_load_from_file():
             data = json.load(file)
     except Exception as e:
         return False, f'Ошибка чтения из файла {f_name}. {e}'
-
     return True, data
 
 

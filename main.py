@@ -4,7 +4,7 @@ import view
 cur_menu_pos = []
 
 # Работа с меню
-view.show_menu_header()  # показать главное меню в начале
+view.show_menu_header()  # показать заголовок программы в начале
 while True:
     ch = ''
     match cur_menu_pos:
