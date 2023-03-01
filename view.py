@@ -115,7 +115,8 @@ def show_note_add():
     status, message = mdl.json_write_to_file(data)
     if status == False:
         print(f'ошибка записи в json-файл: {message}')
-
+    else:
+        print(f'Добавлена заметка с id={new_id}!')
 
 def show_note_delete():
 # Удаление заметки по id
@@ -147,7 +148,6 @@ def show_note_delete():
         if status:
             print(f'Заметка с id={nid} удалена!')
 
-    print()  # разделитель
 
 def show_note_find():
     print()
@@ -255,13 +255,13 @@ def print_tbl(data):
     lid = 5
     lheader = 20
     lcreated = 16
-    ltext = 80
-    lrow = lid + lheader + lcreated + ltext + 8     # общая длина строки
+    ltext = 85
+    lrow = lid + lheader + lcreated + ltext + 5     # общая длина строки
 
     # шапка таблицы
     print(lrow*'-')
     print('|' +
-          "| ".join(
+          "|".join(
               ['id'.center(lid, ' '),
                'header'.center(lheader, ' '),
                'created'.center(lcreated, ' '),
@@ -272,7 +272,7 @@ def print_tbl(data):
     #таблица
     for item in data:
         print('|' +
-              "| ".join(
+              "|".join(
                   [str(item['id']).center(lid, ' '),
                    item['header'].ljust(lheader, ' '),
                    str(item['created']).center(lcreated, ' '),
